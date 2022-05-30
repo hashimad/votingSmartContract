@@ -46,7 +46,7 @@ event Progress(address indexed sender, string indexed level );
         }
         bytes32 previousCandidate = candidates[name].name;
         require(previousCandidate != name,"Candidate Already Exist");
-        Candidate newCandidate = Candidate({
+        Candidate memory newCandidate = Candidate({
             Id : candidateList.length,
             name : name,
             voteCount: 0
@@ -67,7 +67,7 @@ event Progress(address indexed sender, string indexed level );
         return true;
     }
 
-    function getWinner() external  view returns(Candidate memory){
+    function getWinner() external  view override returns(bytes32){
          if(block.timestamp < deployTime + 360){
             revert("voting still ongoing");
         }
@@ -84,7 +84,7 @@ event Progress(address indexed sender, string indexed level );
             }
 
         }
-        return winner;
+        return winner.name;
     }
 
 }
