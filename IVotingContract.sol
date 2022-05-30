@@ -6,7 +6,7 @@ pragma solidity >=0.7.0 <0.9.0;
 interface IVotingContract{
 
 //only one address should be able to add candidates
-    function addCandidate() external returns(bool);
+    function addCandidate(bytes32 name) external returns(bool);
 
     
     function voteCandidate(uint candidateId) external returns(bool);
